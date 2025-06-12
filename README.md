@@ -12,7 +12,8 @@ Before starting you need the following set up and configured on you local machin
 - AWS Credentials (in `~/.aws/credentials`)
 * Make sure to secure your credential with `chmod 600 ~/.aws/credentials`
 
-
+### Pipeline Diagram
+![Pipeline overview](images/pipeline-diagram)
 
 ### Pipeline Tutorial
 1. Clone the repository using the following:
