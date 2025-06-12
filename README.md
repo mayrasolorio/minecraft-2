@@ -17,17 +17,19 @@ Before starting you need the following set up and configured on you local machin
 ### Pipeline Tutorial
 1. Clone the repository using the following:
    ` git clone https://github.com/mayrasolorio/minecraft-2.git `
-3. The `cd minecraft-terraform`
-4. Initialize terraform - this will download the AWS provider and initialize the backend:
+3. Then:
+   `cd minecraft-terraform`
+5. Initialize terraform - this will download the AWS provider and initialize the backend:
    `terraform init`
-5. Apply the changes - this applies the infrastructure and configuration changes:
-   `terraform apply -var="key_name=key_pair"` (make sure to replace key_pair with the name of your ssh key pair)
-6. Type yes when prompted
-7. Terraform will ouput the public_ip once complete, but you can also view it again using:
-   `terraform output -raw public_ip`
-9. You can verify that the port is open by running:
-   `nmap -Pn -p25565 <public_ip>` (replacing <public_ip> with the ip given)
-10. You should see:
+7. Apply the changes - this applies the infrastructure and configuration changes:
+   `terraform apply -var="key_name=key_pair"`
+   (make sure to replace key_pair with the name of your ssh key pair)
+10. Type yes when prompted
+11. Terraform will ouput the public_ip once complete, but you can also view it again using:
+    `terraform output -raw public_ip`
+13. You can verify that the port is open by running:
+    `nmap -Pn -p25565 <public_ip>` (replacing <public_ip> with the ip given)
+15. You should see:
     `25565/tcp open   minecraft`
 
 
