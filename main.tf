@@ -38,11 +38,8 @@ resource "aws_instance" "mc" {
   key_name               = var.key_name
   vpc_security_group_ids = [ aws_security_group.mc_sg.id ]
 
-  # ------------------------
-  # AUTOMATED CONFIGURATION
-  # ------------------------
 
-  # 1) Copy the configure script to the instance
+  # AUTOMATED CONFIGURATION
   provisioner "file" {
     source      = "scripts/configure-server.sh"
     destination = "/home/ec2-user/configure-server.sh"
@@ -55,7 +52,6 @@ resource "aws_instance" "mc" {
     }
   }
 
-  # 2) Execute the script remotely
   provisioner "remote-exec" {
     inline = [
       "chmod +x /home/ec2-user/configure-server.sh",
