@@ -5,4 +5,5 @@ variable "aws_region" {
 
 variable "key_name" {
   description = "key_pair"
+  default     = "key_pair"
 }

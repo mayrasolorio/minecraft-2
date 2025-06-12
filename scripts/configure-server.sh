@@ -7,7 +7,7 @@ sudo yum install -y wget
 # 2) Prepare dir & download server
 cd /home/ec2-user
 mkdir -p minecraft && cd minecraft
-wget -O server.jar https://launcher.mojang.com/v1/objects/.../server.jar
+wget -O server.jar https://piston-data.mojang.com/v1/objects/e6ec2f64e6080b9b5d9b471b291c33cc7f509733/server.jar
 echo "eula=true" > eula.txt
 
 # 3) Create systemd unit
