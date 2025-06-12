@@ -5,3 +5,4 @@
 
 # Terraform working directory
 .terraform/
+.DS_Store
