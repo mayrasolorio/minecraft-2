@@ -33,9 +33,41 @@ resource "aws_security_group" "mc_sg" {
 }
 
 resource "aws_instance" "mc" {
-  ami           = "ami-082945e2727784f8c"  # Amazon Linux 2 (us-west-2)
-  instance_type = "t4g.small"
-  key_name      = var.key_name
-  vpc_security_group_ids = [ "sg-0ee62244185d4f80b" ]
+  ami                    = "ami-082945e2727784f8c"  # Amazon Linux 2 (us-west-2)
+  instance_type          = "t4g.small"
+  key_name               = var.key_name
+  vpc_security_group_ids = [ aws_security_group.mc_sg.id ]
+
+  # ------------------------
+  # AUTOMATED CONFIGURATION
+  # ------------------------
+
+  # 1) Copy the configure script to the instance
+  provisioner "file" {
+    source      = "scripts/configure-server.sh"
+    destination = "/home/ec2-user/configure-server.sh"
+
+    connection {
+      type        = "ssh"
+      host        = self.public_ip
+      user        = "ec2-user"
+      private_key = file("~/.ssh/key_pair.pem")
+    }
+  }
+
+  # 2) Execute the script remotely
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /home/ec2-user/configure-server.sh",
+      "sudo /home/ec2-user/configure-server.sh"
+    ]
+
+    connection {
+      type        = "ssh"
+      host        = self.public_ip
+      user        = "ec2-user"
+      private_key = file("~/.ssh/key_pair.pem")
+    }
+  }
 }
 
