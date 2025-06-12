@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -eux
 
-sudo yum update -y
 sudo amazon-linux-extras install java-openjdk11 -y
 sudo yum install -y wget
 
@@ -32,7 +31,3 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl enable minecraft
 sudo systemctl start minecraft
-
-sleep 5
-sudo systemctl status minecraft --no-pager
-
